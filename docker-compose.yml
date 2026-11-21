@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: nexhrm_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: nexhrm_admin
+      POSTGRES_PASSWORD: nexhrm_secure_password_2026
+      POSTGRES_DB: nexhrm_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexhrm_admin -d nexhrm_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nexhrm_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexhrm_app
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql://nexhrm_admin:nexhrm_secure_password_2026@postgres:5432/nexhrm_db?schema=public"
+      JWT_SECRET: "nexhrm-jwt-secret-key-production-level-enterprise-encryption-2026"
+      SESSION_COOKIE_NAME: "nexhrm_session"
+      NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+      QR_SECRET_KEY: "nexhrm-station-dynamic-qr-hmac-secret-salt-2026"
+      NODE_ENV: "production"
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
