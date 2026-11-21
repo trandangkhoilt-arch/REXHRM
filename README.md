@@ -2,6 +2,10 @@
 
 Hệ thống hiện đại hóa toàn diện công tác quản trị nhân sự, lịch làm việc, tính lương tự động (C&B) và chấm công thông minh chống gian lận đa tầng. Được thiết kế chuyên biệt cho doanh nghiệp, cơ quan hành chính và tổ chức có nhiều phòng ban, chi nhánh và cơ sở làm việc.
 
+- 🌐 **Live Demo (Cloudflare Pages)**: [https://nexhrm.pages.dev](https://nexhrm.pages.dev)
+- 📦 **GitHub Repository**: [https://github.com/trandangkhoilt-arch/REXHRM](https://github.com/trandangkhoilt-arch/REXHRM)
+- ⚡ **Cloudflare Project**: `nexhrm` (Cloudflare Pages & Workers)
+
 ---
 
 ## I. TỔNG QUAN TÍNH NĂNG NỔI BẬT
